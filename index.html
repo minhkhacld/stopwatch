@@ -13,16 +13,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+     <!-- Font Awesome icons (free version)-->
+     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-sm">Time: <span id="time"></span></div>
+            <div class="col-sm-5" id="visual">Thời gian thực hiện: <span id="time">00:00:00</span></div>
+            <!-- <div class="col-sm-4" id="visual">Thời gian thực hiện:</div>
+                <div class="col-sm-8" id="time">00:00:00</div>            -->
         </div>
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-12" id="btn-group">
                 <input type="button" class="btnfunction" value="Start" onclick="start();">
                 <input type="button" class="btnfunction" value="Stop" id="stop" onclick="stop();">
                 <input type="button" class="btnfunction" value="Reset" onclick="reset()">
@@ -62,23 +66,22 @@
                             placeholder="">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label for="">STT CÔNG ĐOẠN</label>
-                            <input type="text" class="form-control" name="STT CÔNG ĐOẠN" id="" aria-describedby="helpId"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <label for="">TÊN CÔNG ĐOẠN</label>
-                            <input type="text" class="form-control" name="TÊN CÔNG ĐOẠN" id=""
-                                aria-describedby="helpId" placeholder="">
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="">STT CÔNG ĐOẠN</label>
+                        <input type="text" class="form-control" name="STT CÔNG ĐOẠN" id="" aria-describedby="helpId"
+                            placeholder="">
                     </div>
                 </div>
-
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label for="">TÊN CÔNG ĐOẠN</label>
+                        <input type="text" class="form-control" name="TÊN CÔNG ĐOẠN" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm">
@@ -89,6 +92,16 @@
 
             <!-- <button type="submit">Submit</button> -->
         </form>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="social-icons">
+                    <a class="social-icon" href="https://www.linkedin.com/in/kha-ph%E1%BA%A1m-minh-58aa68153/"><i
+                            class="fab fa-linkedin-in"></i></a><a class="social-icon" href="https://github.com/minhkhacld"><i
+                            class="fab fa-github"></i></a><a class="social-icon" href="https://www.instagram.com/minhkhacld/"><i class="fab fa-instagram"></i></a><a
+                        class="social-icon" href="https://www.facebook.com/phamminh.kha"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>            
+        </div>        
     </div>
 
     <!-- Optional JavaScript -->
