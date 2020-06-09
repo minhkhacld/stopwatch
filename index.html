@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">Time: <span id="time"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="button" class="btnfunction" value="Start" onclick="start();">
+                <input type="button" class="btnfunction" value="Stop" id="stop" onclick="stop();">
+                <input type="button" class="btnfunction" value="Reset" onclick="reset()">
+            </div>
+        </div>
+        <form action="https://script.google.com/macros/s/AKfycbwzq5k2bs89iJS3tmlnoxeYzdtFh4OaHOYxEiv55onUpP5CYyny/exec"
+            method="get">
+            <!-- <div id="show" name="Cycle time"></div> -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Kết quả</label>
+                        <input type="text" class="form-control" name="Cycle time" id="show" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">LINE</label>
+                        <input type="text" class="form-control" name="CHUYỀN" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">MSCN</label>
+                        <input type="text" class="form-control" name="ID" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">TÊN CÔNG NHÂN</label>
+                        <input type="text" class="form-control" name="TÊN" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <button type="text" id="btn">Sent</button>
+                </div>
+
+            </div>
+
+            <!-- <button type="submit">Submit</button> -->
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        var clsStopwatch = function () {
+            // Private vars
+            var startAt = 0; // Time of last start / resume. (0 if not running)
+            var lapTime = 0; // Time on the clock when last stopped in milliseconds
+
+            var now = function () {
+                return (new Date()).getTime();
+            };
+
+            // Public methods
+            // Start or resume
+            this.start = function () {
+                startAt = startAt ? startAt : now();
+            };
+
+            // Stop or pause
+            this.stop = function () {
+                // If running, update elapsed time otherwise keep it
+                lapTime = startAt ? lapTime + now() - startAt : lapTime;
+                startAt = 0; // Paused
+            };
+
+            // Reset
+            this.reset = function () {
+                lapTime = startAt = 0;
+            };
+
+            // Duration
+            this.time = function () {
+                return lapTime + (startAt ? now() - startAt : 0);
+            };
+        };
+
+        var x = new clsStopwatch();
+        var $time;
+        var clocktimer;
+        var ourTime = 3;
+
+        function pad(num, size) {
+            var s = "0000" + num;
+            return s.substr(s.length - size);
+        }
+
+        function formatTime(time) {
+            var h = m = s = ms = 0;
+            var newTime = '';
+
+            h = Math.floor(time / (60 * 60 * 1000));
+            time = time % (60 * 60 * 1000);
+            m = Math.floor(time / (60 * 1000));
+            time = time % (60 * 1000);
+            s = Math.floor(time / 1000);
+            // ms = time % 1000;         
+
+            // newTime = pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2) + ':' + pad(ms, 3);
+            newTime = pad(h, 2) + ':' + pad(m, 2) + ':' + pad(s, 2);
+            return newTime;
+        }
+
+        function update() {
+            $time.innerHTML = formatTime(x.time());
+        }
+
+        function start() {
+            //Declare $time here, so update() knows which field it needs to update
+            $time = document.getElementById('time');
+            clocktimer = setInterval("update()", 41);
+            x.start();
+        }
+        function stop() {
+            x.stop();
+            clearInterval(clocktimer);
+            var rs = formatTime(x.time());
+            console.log(rs)
+            show.innerText = rs;
+            $("#show").val(rs);
+        }
+        function reset() {
+            stop();
+            x.reset();
+            update();
+        }
+        // $("#btn").click(function () {
+
+        //     console.log(time);
+        // });
+
+    </script>
+</body>
+
+</html>
