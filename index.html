@@ -14,15 +14,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-     <!-- Font Awesome icons (free version)-->
-     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-5" id="visual">Thời gian thực hiện: <span id="time">00:00:00</span></div>
+            <div class="col-sm-5" id="visual">Thời gian thực hiện: <div id="time">00:00:00</div>
+            </div>
             <!-- <div class="col-sm-4" id="visual">Thời gian thực hiện:</div>
                 <div class="col-sm-8" id="time">00:00:00</div>            -->
         </div>
@@ -31,30 +32,44 @@
                 <input type="button" class="btnfunction" value="Start" onclick="start();">
                 <input type="button" class="btnfunction" value="Stop" id="stop" onclick="stop();">
                 <input type="button" class="btnfunction" value="Reset" onclick="reset()">
+                <input type="button" class="btnfunction" value="Copy" onclick="myFunction()">
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="">Chọn đồng hồ</label>
+                    <select class="form-control" name="" id="selectstopwatch" onchange="ChonDongHo()">
+                        <option value="1">Đồng hồ 1</option>
+                        <option value="2">Đồng hồ 2</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Stopwatch1 -->
         <form action="https://script.google.com/macros/s/AKfycbwzq5k2bs89iJS3tmlnoxeYzdtFh4OaHOYxEiv55onUpP5CYyny/exec"
-            method="get">
+            method="get" id="stopwatch1">
             <!-- <div id="show" name="Cycle time"></div> -->
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Kết quả 1</label>
                         <input type="text" class="form-control" name="BẤM GIỜ 1" id="show" aria-describedby="helpId"
-                            placeholder="">
+                            placeholder="kết quả tự động" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Kết quả 2</label>
-                        <input type="text" class="form-control" name="BẤM GIỜ 2" id="show" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="BẤM GIỜ 2" id="" aria-describedby="helpId"
                             placeholder="">
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">Kết quả 3</label>
-                        <input type="text" class="form-control" name="BẤM GIỜ 3" id="show" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="BẤM GIỜ 3" id="" aria-describedby="helpId"
                             placeholder="">
                     </div>
                 </div>
@@ -67,18 +82,18 @@
                             placeholder="">
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">MSCN</label>
                         <input type="text" class="form-control" name="ID" id="" aria-describedby="helpId"
                             placeholder="">
                     </div>
-                </div>
+                </div> -->
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">TÊN CÔNG NHÂN</label>
                         <input type="text" class="form-control" name="TÊN" id="" aria-describedby="helpId"
-                            placeholder="">
+                            placeholder="" required>
                     </div>
                 </div>
             </div>
@@ -94,7 +109,7 @@
                     <div class="form-group">
                         <label for="">TÊN CÔNG ĐOẠN</label>
                         <input type="text" class="form-control" name="TÊN CÔNG ĐOẠN" id="" aria-describedby="helpId"
-                            placeholder="">
+                            placeholder="" required>
                     </div>
                 </div>
             </div>
@@ -102,21 +117,105 @@
                 <div class="col-sm">
                     <button type="text" id="btn">Sent</button>
                 </div>
+            </div>
+        </form>
+        <!-- Stopwatch 2 -->
+        <form action="https://script.google.com/macros/s/AKfycbx4gSoT5phQfqyreVILiR3fbnslJXMckeZgi-Mj13DlDWEXUq8/exec"
+            method="get" id="stopwatch2" style="display:none">
 
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Kết quả 1</label>
+                        <input type="text" class="form-control" name="BẤM GIỜ 1" id="show" aria-describedby="helpId"
+                            placeholder="" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Kết quả 2</label>
+                        <input type="text" class="form-control" name="BẤM GIỜ 2" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Kết quả 3</label>
+                        <input type="text" class="form-control" name="BẤM GIỜ 3" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">LINE</label>
+                        <input type="text" class="form-control" name="CHUYỀN" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">MSCN</label>
+                        <input type="text" class="form-control" name="ID" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div> -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">TÊN CÔNG NHÂN</label>
+                        <input type="text" class="form-control" name="TÊN" id="" aria-describedby="helpId"
+                            placeholder="" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="">STT CÔNG ĐOẠN</label>
+                        <input type="text" class="form-control" name="STT CÔNG ĐOẠN" id="" aria-describedby="helpId"
+                            placeholder="">
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label for="">TÊN CÔNG ĐOẠN</label>
+                        <input type="text" class="form-control" name="TÊN CÔNG ĐOẠN" id="" aria-describedby="helpId"
+                            placeholder="" required>
+                    </div>
+                </div>
             </div>
 
-            <!-- <button type="submit">Submit</button> -->
+            <div class="row">
+                <div class="col-sm">
+                    <button type="text" id="btn">Sent</button>
+                </div>
+            </div>
         </form>
+
+
+
+
+        <div class="row">
+            <a
+                href="https://docs.google.com/spreadsheets/d/1oD9rqmqoGIlczAX0f31jTD0uKmbe9newilfqtBrFCsA/edit?usp=sharing">Xem
+                kết quả</a>
+        </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="social-icons">
                     <a class="social-icon" href="https://www.linkedin.com/in/kha-ph%E1%BA%A1m-minh-58aa68153/"><i
-                            class="fab fa-linkedin-in"></i></a><a class="social-icon" href="https://www.instagram.com/minhkhacld/"><i class="fab fa-instagram"></i></a><a
-                        class="social-icon" href="https://www.facebook.com/phamminh.kha"><i class="fab fa-facebook-f"></i></a>
+                            class="fab fa-linkedin-in"></i></a><a class="social-icon"
+                        href="https://www.instagram.com/minhkhacld/"><i class="fab fa-instagram"></i></a><a
+                        class="social-icon" href="https://www.facebook.com/phamminh.kha"><i
+                            class="fab fa-facebook-f"></i></a>
                 </div>
-            </div>            
-        </div>        
+            </div>
+        </div>
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -209,10 +308,23 @@
             x.reset();
             update();
         }
-        // $("#btn").click(function () {
-
-        //     console.log(time);
-        // });
+        function myFunction() {
+            var copyText = document.getElementById("time");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("Copied the text: " + copyText.value);
+        }
+        function ChonDongHo() {
+            if (selectstopwatch.value == "1") {
+                document.getElementById("stopwatch1").style.display = "block";
+                document.getElementById("stopwatch2").style.display = "none";
+            }
+            else {
+                document.getElementById("stopwatch1").style.display = "none";
+                document.getElementById("stopwatch2").style.display = "block";
+            }
+        }
 
     </script>
 </body>

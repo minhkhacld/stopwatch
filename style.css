@@ -9,6 +9,17 @@
   position: relative;
   width: 100%;
 }
+#visual{
+  margin: auto; 
+ 
+}
+#time{
+  width: 200px !important;
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: 2px 3px 3px gray;
+  
+}
 #btn-group {
   display: flex;
   flex-direction: row;
@@ -19,33 +30,38 @@
 .btnfunction {
   margin: 15px;
   padding: 3px;
-  width: 100px;
-  height: 45px;
-  color: black;
-  background-color: white;
-  border-radius: 5px;
+  width: 100px !important;
+  height: 45px !important;
+  color: white;
+  background-color: darkcyan;
+  border-radius: 50px;
   display: inline;
   text-align: center;
-  /* border-color: 1px solid #eb0eb3; */
+  border: none;
+  box-shadow: 2px 2px 2px gray;
 }
 input[type="button"]:hover {
-  background-color: #eb0eb3;
+  background-color: tomato;
   color: white;
 }
+input[type="button"]:focus {
+  border: none;
+}
 #btn {
-  width: 110px;
+  width: 200px;
   height: 50px;
   margin: 0 auto;
   font-size: 22px;
-  /* center button */
+  border: none;
+ border-radius: 80px !important;
   display: block;
   text-align: center;
-  background-color: #0c0d47;
+  background-color: tomato;
   color: white;
-  border-radius: 8px;
+  box-shadow: 2px 2px 2px gray;  
 }
 #btn:hover {
-  background-color: #0dbf25;
+  background-color: purple;
 }
 #visual {
   margin-top: 20px;
@@ -70,18 +86,27 @@ input[type="button"]:hover {
   justify-content: center;
   height: 3.5rem;
   width: 3.5rem;
-  background-color: #495057;
+  background-color: tomato;
   color: #fff;
   border-radius: 100%;
   font-size: 1.5rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
   margin-right: 1.5rem;
+  box-shadow: 2px 2px 2px gray;  
   
 }
 /* .social-icons .social-icon:last-child {
   margin-right: 0;
 } */
 .social-icons .social-icon:hover {
-  background-color: #bd5d38;
+  background-color: purple;
+}
+a{
+  margin-top:2rem !important;
+  margin-bottom:2rem !important;
+  display: block;
+  margin: auto;
+  text-align: center
+  box-shadow: 2px 2px 2px gray;  
 }
